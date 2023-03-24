@@ -60,28 +60,29 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onchange="validateInputs();"
             >
               <div
                 class="formData">
-                <label for="firstName">Prénom</label><br>
+                <label for="firstname">Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
-                  id="firstName"
-                  name="firstName"
-                  minlength="2"
-                /><br>
+                  id="firstname"
+                  name="firstname"
+                />
+                <div class="error"></div><br>
               </div>
               <div
                 class="formData">
-                <label for="lastName">Nom</label><br>
+                <label for="lastname">Nom</label><br>
                 <input
                   class="text-control"
                   type="text"
-                  id="lastName"
-                  name="lastName"
-                /><br>
+                  id="lastname"
+                  name="lastname"
+                />
+                <div class="error"></div><br>
               </div>
               <div
                 class="formData">
@@ -91,7 +92,8 @@
                   type="email"
                   id="email"
                   name="email"
-                /><br>
+                />
+                <div class="error"></div><br>
               </div>
               <div
                 class="formData">
@@ -101,12 +103,14 @@
                   type="date"
                   id="birthdate"
                   name="birthdate"
-                /><br>
+                />
+                <div class="error"></div><br>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" class="text-control" id="quantityTournaments" name="quantity">
+                <div class="error"></div>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -177,6 +181,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <p class="cityError">Veuillez choisir une ville</p>
               </div>
 
               <div
@@ -185,12 +190,12 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  required
                 />
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <p class="termsOfUseError">Vous devez accepter les conditions d'utilisation pour vous inscrire.</p>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
