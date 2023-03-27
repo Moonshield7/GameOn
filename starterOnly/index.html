@@ -61,6 +61,7 @@
               action="index.html"
               method="get"
               onchange="validateInputs();"
+              onsubmit="validateForm();"
             >
               <div
                 class="formData">
@@ -71,7 +72,7 @@
                   id="firstname"
                   name="firstname"
                 />
-                <div class="error"></div><br>
+                <div class="error"></div>
               </div>
               <div
                 class="formData">
@@ -82,7 +83,7 @@
                   id="lastname"
                   name="lastname"
                 />
-                <div class="error"></div><br>
+                <div class="error"></div>
               </div>
               <div
                 class="formData">
@@ -93,7 +94,7 @@
                   id="email"
                   name="email"
                 />
-                <div class="error"></div><br>
+                <div class="error"></div>
               </div>
               <div
                 class="formData">
@@ -104,7 +105,7 @@
                   id="birthdate"
                   name="birthdate"
                 />
-                <div class="error"></div><br>
+                <div class="error"></div>
               </div>
               <div
                 class="formData">
@@ -195,8 +196,7 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
-                <p class="termsOfUseError">Vous devez accepter les conditions d'utilisation pour vous inscrire.</p>
-                <br>
+                <p class="termsOfUseError">Vous devez accepter les conditions d'utilisation.</p>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
@@ -205,6 +205,7 @@
                 <br>
               </div>
               <input
+                id="submitButtonForm"
                 class="btn-submit"
                 type="submit"
                 class="button"

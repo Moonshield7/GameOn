@@ -35,14 +35,8 @@ const lastname = document.getElementById('lastname');
 const email = document.getElementById('email');
 const birthdate = document.getElementById('birthdate');
 const quantityTournaments = document.getElementById('quantityTournaments');
+const submitButtonForm = document.getElementById('submitButtonForm');
 
-console.log("coucou");
-
-// form.addEventListener('change', e => {
-//     e.preventDefault();
-
-//     validateInputs();
-// });
 
 // Fonction : afficher une erreur.
 const setError = (element, message) => {
@@ -71,13 +65,36 @@ const setSuccess = (element) => {
 // Fonction : validation des différents champs.
 // Elle rassemble chacune des fonctions de validation détaillées plus bas
 const validateInputs = () => {
-    validateFirstname();
-    validateLastname();
-    validateEmail();
-    validateBirthdate();
-    validateQuantityTournaments();
-    validateCity();
-    validateTermsOfUse();
+    let firstnameIsValid = validateFirstname();
+    let lastnameIsValid = validateLastname();
+    let emailIsValid = validateEmail();
+    let birthdateIsValid = validateBirthdate();
+    let quantityTournamentsIsValid = validateQuantityTournaments();
+    let cityIsValid = validateCity();
+    let termsOfUseIsValid = validateTermsOfUse();
+
+    if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || termsOfUseIsValid === false){
+        submitButtonForm.style.display = "none";
+    } else {
+        console.log("YAY !");
+        submitButtonForm.style.display = "block";
+    }
+}
+
+const validateForm = () => {
+    let firstnameIsValid = validateFirstname();
+    let lastnameIsValid = validateLastname();
+    let emailIsValid = validateEmail();
+    let birthdateIsValid = validateBirthdate();
+    let quantityTournamentsIsValid = validateQuantityTournaments();
+    let cityIsValid = validateCity();
+    let termsOfUseIsValid = validateTermsOfUse();
+
+    if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || termsOfUseIsValid === false){
+        alert("Veuillez remplir les champs du formulaire correctement.");
+    } else {
+        document.querySelector('.modal-body').innerHTML = "<div class='modal-thanks'>Merci pour votre inscription</div>";
+    }
 }
 
 //Fonction de vérification du format du nom et prénom via une regex
@@ -94,18 +111,22 @@ const validateFirstname = () => {
     //Si le prénom n'est pas saisi :
     if(firstnameValue === "") {
         setError(firstname, "Veuillez entrer votre prénom");
+        return false;
     }
     //Si le prénom contient moins de deux caractères
     else if(firstnameValue.length <= 2){
         setError(firstname, "Votre prénom doit comporter plus de deux caractères");
+        return false;
     } 
     //Si le prénom contient d'autres caractères que des lettres
     else if(!isValidName(firstnameValue)) {
       setError(firstname, "Votre prénom ne peut contenir que des lettres.");
+      return false;
     }
     // Les conditions sont remplies
     else {
         setSuccess(firstname);
+        return true;
     }
 }
 
@@ -115,10 +136,13 @@ const validateLastname = () => {
 
     if(lastnameValue === "") {
         setError(lastname, "Veuillez entrer votre nom");
+        return false;
     }else if(lastnameValue.length <= 2){
         setError(lastname, "Votre nom doit comporter plus de deux caractères");
+        return false;
     } else {
         setSuccess(lastname);
+        return true;
     }
 }
 
@@ -134,10 +158,13 @@ const validateEmail = () => {
     const emailValue = email.value.trim();
     if(emailValue === ""){
         setError(email, "Veuillez entrer votre adresse email");
+        return false;
     } else if(!isValidEmail(emailValue)){
         setError(email, "Votre email doit être au format : bonjour@contact.com");
+        return false;
     } else {
         setSuccess(email);
+        return true;
     }
 }
 
@@ -152,10 +179,19 @@ const validateBirthdate = () => {
 
     if(birthdateValue === ""){
         setError(birthdate, "Veuillez entrer votre date de naissance.");
+        return false;
+    } else if(currentAge < 0) {
+        setError (birthdate, "Vous n'êtes même pas encore né !");
+        return false;
     } else if(currentAge < 18) {
         setError(birthdate, "Vous devez avoir au moins 18 ans pour vous inscrire.");
+        return false;
+    } else if(currentAge > 150) {
+        setError(birthdate, "Vous êtes un peu trop âgé pour nos tournois...");
+        return false;
     } else {
         setSuccess(birthdate);
+        return true;
     }
 }
 
@@ -164,12 +200,16 @@ const validateQuantityTournaments = () => {
     const quantityTournamentsValue = quantityTournaments.value;
     if(quantityTournamentsValue === ""){
         setError(quantityTournaments, "Veuillez entrer le nombre de tournois auxquels vous avez participé.");
+        return false;
     } else if(quantityTournamentsValue < 0) {
-        setError(quantityTournaments, "Vous ne pouvez pas avoir participé à un nombre négatif de tournois !")
+        setError(quantityTournaments, "Vous ne pouvez pas avoir participé à un nombre négatif de tournois !");
+        return false;
     } else if(quantityTournamentsValue > 99) {
         setError(quantityTournaments, "Vous n'avez pas pu participer à autant de tournois !");
+        return false;
     } else {
         setSuccess(quantityTournaments);
+        return true;
     }
 }
 
@@ -197,9 +237,11 @@ const validateTermsOfUse = () => {
     // Si la checkbox est cochée : le message d'erreur disparaît
     if(termsOfUse.checked === true){
         document.querySelector(".termsOfUseError").style.display = "none";
+        return true;
     }
     // Si la checkbox n'est pas cochée : le message d'erreur reste affiché
     else {
         document.querySelector(".termsOfUseError").style.display = "block";
+        return false;
     }
 }
