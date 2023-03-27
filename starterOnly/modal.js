@@ -62,7 +62,7 @@ const setSuccess = (element) => {
     inputContainer.classList.remove('error');
 }
 
-// Fonction : validation des différents champs.
+// Fonction : validation des différents champs qui se déroule lorsque le formulaire est en train d'être rempli.
 // Elle rassemble chacune des fonctions de validation détaillées plus bas
 const validateInputs = () => {
     let firstnameIsValid = validateFirstname();
@@ -73,14 +73,17 @@ const validateInputs = () => {
     let cityIsValid = validateCity();
     let termsOfUseIsValid = validateTermsOfUse();
 
+    // Si au moins un des champs n'est pas valide, le bouton submit n'apparaît pas
     if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || termsOfUseIsValid === false){
         submitButtonForm.style.display = "none";
-    } else {
-        console.log("YAY !");
+    }
+    // Si tous les champs sont valides, le bouton apparaît.
+    else {
         submitButtonForm.style.display = "block";
     }
 }
 
+// Fonction : validation et envoi du formulaire lorsque l'on clique sur le bouton submit
 const validateForm = () => {
     let firstnameIsValid = validateFirstname();
     let lastnameIsValid = validateLastname();
@@ -90,10 +93,16 @@ const validateForm = () => {
     let cityIsValid = validateCity();
     let termsOfUseIsValid = validateTermsOfUse();
 
+    // Si l'un des éléments n'est pas valide : l'utilisateur reçoit un message d'erreur. Ne devrait pas arriver puisque le bouton n'apparaît que si les champs sont valides, juste au cas où.
     if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || termsOfUseIsValid === false){
         alert("Veuillez remplir les champs du formulaire correctement.");
-    } else {
-        document.querySelector('.modal-body').innerHTML = "<div class='modal-thanks'>Merci pour votre inscription</div>";
+    }
+    // Si tous le formulaire est valide, un message de succès s'affiche dans la modale, avec un bouton qui peut permettre de la faire disparaître.
+    else {
+        document.querySelector('.modal-body').innerHTML = "<div class='modal-thanks'><p>Merci pour votre inscription !</p><br><br><br><button class='modal-btn btn-signup' id='close-after-form'> Fermer </button></div>";
+        const closeAfterFormBtn = document.getElementById("close-after-form");
+        closeAfterFormBtn.addEventListener("click", closeModal);
+
     }
 }
 
