@@ -229,16 +229,17 @@ const validateCity = () => {
     let j = 0;
     //Création d'une boucle qui passe en revue les éléments du tableau
     for(let i = 0; i < city.length; i++){
-        // Si l'un des boutons radio est coché, le message d'erreur disparaît et la boucle s'arrête grâce au break.
+        // Si l'un des boutons radio est coché, la variable j est augmentée de 1
         if(city[i].checked === true){
             j++;
         }
     }
+    // Si j est supérieure à 0, cela signifie qu'un bouton radio est coché : retrait du message d'erreur
     if(j > 0){
         document.querySelector(".cityError").style.display = "none";
         return true;
     }
-    //Si aucun des boutons radio n'est coché, le message d'erreur resteaffiché.
+    //Sinon, cela signifie qu'aucun des boutons radio n'est coché, le message d'erreur reste affiché.
     else {
         document.querySelector(".cityError").style.display = "block";
         return false;
