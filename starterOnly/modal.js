@@ -74,7 +74,7 @@ const validateInputs = () => {
     let termsOfUseIsValid = validateTermsOfUse();
 
     // Si au moins un des champs n'est pas valide, le bouton submit n'apparaît pas
-    if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || termsOfUseIsValid === false){
+    if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || cityIsValid === false || termsOfUseIsValid === false){
         submitButtonForm.style.display = "none";
     }
     // Si tous les champs sont valides, le bouton apparaît.
@@ -94,7 +94,7 @@ const validateForm = () => {
     let termsOfUseIsValid = validateTermsOfUse();
 
     // Si l'un des éléments n'est pas valide : l'utilisateur reçoit un message d'erreur. Ne devrait pas arriver puisque le bouton n'apparaît que si les champs sont valides, juste au cas où.
-    if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || termsOfUseIsValid === false){
+    if(firstnameIsValid === false || lastnameIsValid === false || emailIsValid === false || birthdateIsValid === false || quantityTournamentsIsValid === false || cityIsValid === false || termsOfUseIsValid === false){
         alert("Veuillez remplir les champs du formulaire correctement.");
     }
     // Si tous le formulaire est valide, un message de succès s'affiche dans la modale, avec un bouton qui peut permettre de la faire disparaître.
@@ -226,19 +226,25 @@ const validateQuantityTournaments = () => {
 // Récupération du tableau des boutons radios
 const city = document.querySelectorAll('input[type="radio"]');
 const validateCity = () => {
+    let j = 0;
     //Création d'une boucle qui passe en revue les éléments du tableau
     for(let i = 0; i < city.length; i++){
         // Si l'un des boutons radio est coché, le message d'erreur disparaît et la boucle s'arrête grâce au break.
         if(city[i].checked === true){
-            document.querySelector(".cityError").style.display = "none";
-            break;
-        }
-        //Si aucun des boutons radio n'est coché, le message d'erreur reste affiché.
-        else {
-            document.querySelector(".cityError").style.display = "block";
+            j++;
         }
     }
+    if(j > 0){
+        document.querySelector(".cityError").style.display = "none";
+        return true;
+    }
+    //Si aucun des boutons radio n'est coché, le message d'erreur resteaffiché.
+    else {
+        document.querySelector(".cityError").style.display = "block";
+        return false;
+    }
 }
+
 
 // Fonction : validation de l'acceptation des conditions d'utilisation
 const termsOfUse = document.getElementById("checkbox1");
