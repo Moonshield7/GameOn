@@ -8,10 +8,10 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeBtn = document.querySelector(".close");
+const   modalbg = document.querySelector(".bground"),
+        modalBtn = document.querySelectorAll(".modal-btn"),
+        formData = document.querySelectorAll(".formData"),
+        closeBtn = document.querySelector(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -47,7 +47,7 @@ const setError = (element, message) => {
     //On indique le message à afficher dans cette erreur, et on change la bordure grâce aux classes CSS (passe en rouge ici)
     errorDisplay.innerText = message;
     inputContainer.classList.add('error');
-    inputContainer.classList.remove('sucess');
+    inputContainer.classList.remove('success');
 }
 
 // Fonction : signaler un succès.
@@ -108,7 +108,7 @@ const validateForm = () => {
 
 //Fonction de vérification du format du nom et prénom via une regex
 const isValidName = name => {
-  const re = /^[a-zA-Z\u00e0-\u00ff]+(([- ])?[a-z\u00e0-\u00ff])+$/;
+  const re = /^[A-zÀ-ú\-"' ]+$/;
   return re.test(String(name));
 }
 
@@ -148,6 +148,9 @@ const validateLastname = () => {
         return false;
     }else if(lastnameValue.length <= 2){
         setError(lastname, "Votre nom doit comporter plus de deux caractères");
+        return false;
+    } else if(!isValidName(lastnameValue)) {
+        setError(lastname, "Votre nom ne peut contenir que des lettres.");
         return false;
     } else {
         setSuccess(lastname);
