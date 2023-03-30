@@ -1,5 +1,7 @@
-# Projet GameOn
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+# Projet 4 - GameOn : Créez une landing page avec Javascript
+## Par Fannie PRESMAN 
+### Du 20 mars 2023 au 30 mars 2023
+
+La branche **develop** est celle sur laquelle la majorité du travail a été effectué. Une fois la branche opérationnelle, elle a été merge avec la branche master.
+
+La branche **version2** est une branche destinée à effectuer des tests.
