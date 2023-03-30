@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans"
       rel="stylesheet"
     />
+    
   </head>
   <body>
     <div class="topnav" id="myTopnav">
@@ -23,7 +24,7 @@
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="javascript:void(0);" class="icon" id="burgermenu">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -57,11 +58,10 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
+              id="formulaire"
               name="reserve"
               action="index.html"
               method="get"
-              onchange="validateInputs();"
-              onsubmit="validateForm();"
             >
               <div
                 class="formData">

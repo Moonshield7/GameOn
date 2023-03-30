@@ -8,10 +8,16 @@ function editNav() {
 }
 
 // DOM Elements
-const   modalbg = document.querySelector(".bground"),
+const   burgermenu = document.getElementById('burgermenu'),
+        modalbg = document.querySelector(".bground"),
         modalBtn = document.querySelectorAll(".modal-btn"),
         formData = document.querySelectorAll(".formData"),
         closeBtn = document.querySelector(".close");
+
+// Menu burger de la navigation
+burgermenu.addEventListener('click', ()=>{
+    editNav();
+});
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -29,7 +35,7 @@ function closeModal() {
 }
 
 // ### Issue 2 : validité du formulaire ###
-const form = document.getElementById('reserve');
+const form = document.getElementById('formulaire');
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
 const email = document.getElementById('email');
@@ -264,3 +270,16 @@ const validateTermsOfUse = () => {
         return false;
     }
 }
+
+// Ecouteur d'évènement qui prend en compte les changements sur le formulaire.
+form.addEventListener('change', (e) => {
+    e.preventDefault();
+    validateInputs();
+});
+
+
+// Ecouteur d'évènement qui prend en compte la soumission du formulaire.
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    validateForm();
+});
