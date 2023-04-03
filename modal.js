@@ -35,13 +35,13 @@ function closeModal() {
 }
 
 // ### Issue 2 : validité du formulaire ###
-const form = document.getElementById('formulaire');
-const firstname = document.getElementById('firstname');
-const lastname = document.getElementById('lastname');
-const email = document.getElementById('email');
-const birthdate = document.getElementById('birthdate');
-const quantityTournaments = document.getElementById('quantityTournaments');
-const submitButtonForm = document.getElementById('submitButtonForm');
+const   form = document.getElementById('formulaire'),
+        firstname = document.getElementById('firstname'),
+        lastname = document.getElementById('lastname'),
+        email = document.getElementById('email'),
+        birthdate = document.getElementById('birthdate'),
+        quantityTournaments = document.getElementById('quantityTournaments'),
+        submitButtonForm = document.getElementById('submitButtonForm');
 
 
 // Fonction : afficher une erreur.
@@ -272,9 +272,29 @@ const validateTermsOfUse = () => {
 }
 
 // Ecouteur d'évènement qui prend en compte les changements sur le formulaire.
-form.addEventListener('change', (e) => {
-    e.preventDefault();
-    validateInputs();
+// form.addEventListener('change', (e) => {
+//     e.preventDefault();
+//     validateInputs();
+// });
+
+firstname.addEventListener('keyup',()=>{
+    firstnameIsValid = validateFirstname();
+});
+
+lastname.addEventListener('keyup',()=>{
+    lastnameIsValid = validateLastname();
+});
+
+email.addEventListener('keyup',()=>{
+    emailIsValid = validateEmail();
+});
+
+birthdate.addEventListener('keyup',()=>{
+    birthdateIsValid = validateBirthdate();
+});
+
+quantityTournaments.addEventListener('keyup',()=>{
+    quantityTournamentsIsValid = validateQuantityTournaments();
 });
 
 
